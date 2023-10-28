@@ -18,10 +18,10 @@ def get_installation_location():
 def fetch_and_rename_git_repo(repo_owner, repo_name, destination_folder, new_project_name):
     zip_filename = 'temp_repo.zip'
     temp_folder = 'temp_repo_extracted'
+    releases_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/releases/latest'
 
     try:
         # Check for the latest release
-        releases_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/releases/latest'
         response = requests.get(releases_url)
         if response.status_code == 200:
             release_info = response.json()
@@ -29,8 +29,9 @@ def fetch_and_rename_git_repo(repo_owner, repo_name, destination_folder, new_pro
             print(f"Latest release found: {release_tag_name}")
             release_url = release_info.get('zipball_url')
         else:
-            release_tag_name = 'master'  # Default to 'master' if no release is found
-            release_url = f'https://github.com/{repo_owner}/{repo_name}/archive/master.zip'
+            print("No Stable release found! defaulting to main branch")
+            release_tag_name = 'main'  # Default to 'main' if no release is found
+            release_url = f'https://github.com/{repo_owner}/{repo_name}/archive/main.zip'
 
         # Download the ZIP archive
         response = requests.get(release_url)
@@ -44,10 +45,17 @@ def fetch_and_rename_git_repo(repo_owner, repo_name, destination_folder, new_pro
         with zipfile.ZipFile(zip_filename, 'r') as zip_ref:
             zip_ref.extractall(temp_folder)
 
-        # Rename the extracted folder to the desired project name and move it to the destination folder
-        extracted_folder = os.path.join(temp_folder, f'{repo_name}-{release_tag_name}')
+        if temp_folder_contents := os.listdir(temp_folder):
+            # Get the name of the first directory inside the temporary folder
+            first_directory_name = next(item for item in temp_folder_contents if os.path.isdir(os.path.join(temp_folder, item)))
+            extracted_folder = os.path.join(temp_folder, first_directory_name)
+        else:
+            print("No directories found inside the temporary folder.")
+            return
+
+        # Move the extracted folder to the destination folder and use the specified project name
         new_folder = os.path.join(destination_folder, new_project_name)
-        os.rename(extracted_folder, new_folder)
+        shutil.move(extracted_folder, new_folder)
 
         # Remove the .github folder from the downloaded repository
         github_folder = os.path.join(new_folder, '.github')
@@ -69,7 +77,8 @@ def fetch_and_rename_git_repo(repo_owner, repo_name, destination_folder, new_pro
     except Exception as e:
         print("An error occurred:", e)
 
-if __name__ == "__main__":
+running = True
+while running:
     print("PHP Launcher Installation Script")
 
     # Prompt for the GitHub repository owner and name
@@ -81,3 +90,4 @@ if __name__ == "__main__":
 
     if install_location := get_installation_location():
         fetch_and_rename_git_repo(repo_owner, repo_name, install_location, new_project_name)
+    running = False
