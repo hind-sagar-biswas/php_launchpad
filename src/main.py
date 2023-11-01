@@ -6,6 +6,87 @@ import requests
 import subprocess
 from PyQt5.QtWidgets import QApplication, QFileDialog
 
+def fetch_release_info(repo_owner, repo_name):
+    """
+    Fetches release information for a given repository.
+
+    Args:
+        repo_owner (str): The owner of the repository.
+        repo_name (str): The name of the repository.
+
+    Returns:
+        list: A list of dictionaries containing release information. Each dictionary has the following keys:
+            - tag (str): The tag name of the release.
+            - url (str): The URL of the release.
+            - prerelease (bool): Indicates if the release is a prerelease.
+
+    Examples:
+        >>> fetch_release_info('myusername', 'myrepo')
+        [
+            {
+                'tag': 'main',
+                'url': 'https://github.com/myusername/myrepo/archive/main.zip',
+                'prerelease': True
+            },
+            {
+                'tag': 'v1.0',
+                'url': 'https://github.com/myusername/myrepo/archive/v1.0.zip',
+                'prerelease': False
+            }
+        ]
+    """
+    releases_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/releases'
+    response = requests.get(releases_url)
+    releases = [
+        {
+            "tag": "main",
+            "url": f'https://github.com/{repo_owner}/{repo_name}/archive/main.zip',
+            "pre": True,
+        }
+    ]
+
+    if response.status_code == 200:
+        release_info = response.json()
+        for i in release_info:
+            if not i.get('draft'):
+                releases.append({
+                    "tag": i.get('tag_name'),
+                    "url": i.get('zipball_url'),
+                    "pre": i.get('prerelease'),
+                })
+
+    return releases
+
+
+def select_release(releases):
+    """
+    Selects a release from a list of releases.
+
+    Args:
+        releases (list): A list of releases.
+
+    Returns:
+        str: The URL of the selected release.
+    """
+    print('\033[92mFound releases\033[0m')
+    print("=" * 93)
+    for i, release in enumerate(releases):
+        if (release['pre']):
+            print(f'\033[94m{i}|\033[0m [\033[91mpre\033[0m] {release["tag"]}')
+        else:
+            print(f'\033[94m{i}|\033[0m [\033[92mstb\033[0m] {release["tag"]}')
+    print("=" * 93)
+
+    select = ''
+    while not select.isdigit() or int(select) not in range(len(releases) - 1):
+        select = input('>> Select release number: ')
+
+    select = int(select)
+    return releases[select]['url']
+
+            
+    
+
 # Function to open a file dialog and get the installation location
 def get_installation_location():
     app = QApplication(sys.argv)
@@ -18,20 +99,10 @@ def get_installation_location():
 def fetch_and_rename_git_repo(repo_owner, repo_name, destination_folder, new_project_name):
     zip_filename = 'temp_repo.zip'
     temp_folder = 'temp_repo_extracted'
-    releases_url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/releases/latest'
 
     try:
-        # Check for the latest release
-        response = requests.get(releases_url)
-        if response.status_code == 200:
-            release_info = response.json()
-            release_tag_name = release_info.get('tag_name')
-            print(f"Latest release found: {release_tag_name}")
-            release_url = release_info.get('zipball_url')
-        else:
-            print("No Stable release found! defaulting to main branch")
-            release_tag_name = 'main'  # Default to 'main' if no release is found
-            release_url = f'https://github.com/{repo_owner}/{repo_name}/archive/main.zip'
+        releases = fetch_release_info(repo_owner, repo_name)
+        release_url = select_release(releases)
 
         # Download the ZIP archive
         response = requests.get(release_url)
