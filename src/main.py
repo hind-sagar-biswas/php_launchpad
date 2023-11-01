@@ -72,9 +72,9 @@ def select_release(releases):
     print("=" * 93)
     for i, release in enumerate(releases):
         if (release['pre']):
-            print(f'\033[94m{i}| [\033[91mpre\033[0m] {release["tag"]}')
+            print(f'\033[94m{i}|\033[0m [\033[91mpre\033[0m] {release["tag"]}')
         else:
-            print(f'\033[94m{i}| [\033[92mstb\033[0m] {release["tag"]}')
+            print(f'\033[94m{i}|\033[0m [\033[92mstb\033[0m] {release["tag"]}')
     print("=" * 93)
 
     select = ''
