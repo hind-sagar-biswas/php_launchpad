@@ -41,7 +41,7 @@ def fetch_release_info(repo_owner, repo_name):
         {
             "tag": "main",
             "url": f'https://github.com/{repo_owner}/{repo_name}/archive/main.zip',
-            "prerelease": True,
+            "pre": True,
         }
     ]
 
@@ -52,7 +52,7 @@ def fetch_release_info(repo_owner, repo_name):
                 releases.append({
                     "tag": i.get('tag_name'),
                     "url": i.get('zipball_url'),
-                    "prerelease": i.get('prerelease'),
+                    "pre": i.get('prerelease'),
                 })
 
     return releases
@@ -67,18 +67,16 @@ def select_release(releases):
 
     Returns:
         str: The URL of the selected release.
-
-    Examples:
-        >>> releases = [{'tag': 'v1.0', 'url': 'https://example.com/release/v1.0'}, {'tag': 'v2.0', 'url': 'https://example.com/release/v2.0'}]
-        >>> select_release(releases)
-        Found releases:
-        ===================================================================================
-        0| [stb] v1.0
-        1| [stb] v2.0
-        ===================================================================================
-        >> Select release number: 1
-        'https://example.com/release/v2.0'
     """
+    print('\033[92mFound releases\033[0m')
+    print("=" * 93)
+    for i, release in enumerate(releases):
+        if (release['pre']):
+            print(f'\033[94m{i}| [\033[91mpre\033[0m] {release["tag"]}')
+        else:
+            print(f'\033[94m{i}| [\033[92mstb\033[0m] {release["tag"]}')
+    print("=" * 93)
+
     select = ''
     while not select.isdigit() or int(select) not in range(len(releases) - 1):
         select = input('>> Select release number: ')
