@@ -6,11 +6,7 @@ import requests
 import subprocess
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
-from PyQt5 import QtCore, QtGui, QtWidgets
-
-
-class Ui_MainWindow(object):
+class LaunchPad(object):
     def __init__(self):
         super().__init__()
 
@@ -53,7 +49,7 @@ class Ui_MainWindow(object):
         self.releasedVersionsList.setGeometry(QtCore.QRect(10, 160, 441, 221))
         self.releasedVersionsList.setStyleSheet("border: 1px solid grey; border-radius: 5px;")
         self.releasedVersionsList.setObjectName("releasedVersionsList")
-        self.prepareLauncherButton = QtWidgets.QPushButton(self.centralwidget)
+        self.prepareLauncherButton = QtWidgets.QPushButton(self.centralwidget, clicked= lambda: prepare_php_launcher())
         self.prepareLauncherButton.setGeometry(QtCore.QRect(310, 390, 141, 31))
         font = QtGui.QFont()
         font.setBold(True)
@@ -128,6 +124,9 @@ class Ui_MainWindow(object):
         for release in self.releases:
             self.releasedVersionsList.addItem(release['tag'])
 
+    def prepare_php_launcher(self):
+        pass
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "PHP Launchpad v1.3.0"))
@@ -135,7 +134,7 @@ class Ui_MainWindow(object):
         self.selectLocationButton.setText(_translate("MainWindow", "Browse Location"))
         self.projectNameInput.setPlaceholderText(_translate("MainWindow", "Name of the project"))
         self.prepareLauncherButton.setText(_translate("MainWindow", "Setup Launcher"))
-        self.initOnLaunchCheckBox.setText(_translate("MainWindow", "Initialize project quitly on installation?"))
+        self.initOnLaunchCheckBox.setText(_translate("MainWindow", "Initialize project quitely on installation?"))
         self.selectVersionLabel.setText(_translate("MainWindow", "Select the version you want to setup from below"))
 
 
@@ -143,7 +142,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = LaunchPad()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
