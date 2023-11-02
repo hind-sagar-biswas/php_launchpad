@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(461, 522)
+        MainWindow.resize(461, 516)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("./src/gui/ui\\../../favicon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -35,20 +35,20 @@ class Ui_MainWindow(object):
         self.projectNameInput.setStyleSheet("padding: 10px;")
         self.projectNameInput.setObjectName("projectNameInput")
         self.releasedVersionsList = QtWidgets.QListWidget(self.centralwidget)
-        self.releasedVersionsList.setGeometry(QtCore.QRect(10, 150, 441, 231))
+        self.releasedVersionsList.setGeometry(QtCore.QRect(10, 160, 441, 221))
         self.releasedVersionsList.setObjectName("releasedVersionsList")
         self.selectVersionButton = QtWidgets.QPushButton(self.centralwidget)
         self.selectVersionButton.setGeometry(QtCore.QRect(310, 390, 141, 31))
         self.selectVersionButton.setObjectName("selectVersionButton")
         self.prepareLauncherButton = QtWidgets.QPushButton(self.centralwidget)
-        self.prepareLauncherButton.setGeometry(QtCore.QRect(310, 430, 141, 41))
+        self.prepareLauncherButton.setGeometry(QtCore.QRect(310, 430, 141, 31))
         self.prepareLauncherButton.setObjectName("prepareLauncherButton")
-        self.installationDetails = QtWidgets.QTextBrowser(self.centralwidget)
-        self.installationDetails.setGeometry(QtCore.QRect(10, 390, 291, 81))
-        self.installationDetails.setObjectName("installationDetails")
         self.initOnLaunchCheckBox = QtWidgets.QCheckBox(self.centralwidget)
-        self.initOnLaunchCheckBox.setGeometry(QtCore.QRect(10, 120, 431, 20))
+        self.initOnLaunchCheckBox.setGeometry(QtCore.QRect(10, 390, 251, 20))
         self.initOnLaunchCheckBox.setObjectName("initOnLaunchCheckBox")
+        self.selectVersionLabel = QtWidgets.QLabel(self.centralwidget)
+        self.selectVersionLabel.setGeometry(QtCore.QRect(10, 120, 441, 31))
+        self.selectVersionLabel.setObjectName("selectVersionLabel")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 461, 26))
@@ -67,16 +67,9 @@ class Ui_MainWindow(object):
         self.selectLocationButton.setText(_translate("MainWindow", "Browse Location"))
         self.projectNameInput.setPlaceholderText(_translate("MainWindow", "Name of the project"))
         self.selectVersionButton.setText(_translate("MainWindow", "Select Version"))
-        self.prepareLauncherButton.setText(_translate("MainWindow", "Prepare Launcher"))
-        self.installationDetails.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Project    : </span><span style=\" font-style:italic; color:#9c9c9c;\">*</span><span style=\" font-style:italic; color:#969696;\">not named</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Location    : </span><span style=\" font-style:italic; color:#969696;\">*not selected</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Version    : </span><span style=\" font-style:italic; color:#969696;\">*not selected</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Initialize    : </span>false</p></body></html>"))
+        self.prepareLauncherButton.setText(_translate("MainWindow", "Setup Launcher"))
         self.initOnLaunchCheckBox.setText(_translate("MainWindow", "Initialize project quitly on installation?"))
+        self.selectVersionLabel.setText(_translate("MainWindow", "Select the version you want to setup from below"))
 
 
 if __name__ == "__main__":

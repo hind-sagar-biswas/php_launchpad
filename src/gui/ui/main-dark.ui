@@ -20,6 +20,12 @@
   <property name="toolTipDuration">
    <number>1</number>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #0d1117; color: #bec6cd;</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="installLocationInput">
     <property name="geometry">
@@ -30,6 +36,12 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid grey; border-radius: 5px;</string>
+    </property>
+    <property name="text">
+     <string>C:/</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="selectLocationButton">
     <property name="geometry">
@@ -39,6 +51,15 @@
       <width>151</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #30363d; color: #eaf3ff; border: 1px solid grey; border-radius: 5px;</string>
     </property>
     <property name="text">
      <string>Browse Location</string>
@@ -59,7 +80,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">padding: 10px;</string>
+     <string notr="true">padding: 10px; border: 1px solid grey; border-radius: 5px;</string>
     </property>
     <property name="placeholderText">
      <string>Name of the project</string>
@@ -74,6 +95,9 @@
       <height>221</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid grey; border-radius: 5px;</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="selectVersionButton">
     <property name="geometry">
@@ -83,6 +107,15 @@
       <width>141</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #30363d; color: #eaf3ff; border: 1px solid grey; border-radius: 5px;</string>
     </property>
     <property name="text">
      <string>Select Version</string>
@@ -97,6 +130,15 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #7a37a3; color: #eaf3ff; border-radius: 5px;</string>
+    </property>
     <property name="text">
      <string>Setup Launcher</string>
     </property>
@@ -110,6 +152,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #89929c;</string>
+    </property>
     <property name="text">
      <string>Initialize project quitly on installation?</string>
     </property>
@@ -122,6 +167,9 @@
       <width>441</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #89929c;</string>
     </property>
     <property name="text">
      <string>Select the version you want to setup from below</string>
