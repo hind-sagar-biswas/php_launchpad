@@ -16,7 +16,6 @@ class App():
 
         self.setupWindow = SetupWindow(destination_folder, project_name, selected_release, initialize_on_setup)
         self.setupWindow.show()
-        self.setupWindow.prepare_php_launcher()
 
 if __name__ == "__main__":
     app = App()

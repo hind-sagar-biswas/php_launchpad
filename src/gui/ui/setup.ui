@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -252,7 +255,7 @@
      <number>0</number>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="openInCodeButton">
     <property name="geometry">
      <rect>
       <x>492</x>
@@ -268,7 +271,7 @@
      <string>Open in VS code</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="openFolderButton">
     <property name="geometry">
      <rect>
       <x>390</x>
@@ -284,7 +287,7 @@
      <string>Open Folder</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="finishButton">
     <property name="geometry">
      <rect>
       <x>290</x>
@@ -311,7 +314,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
      <item>
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="statusTitle">
        <property name="font">
         <font>
          <weight>75</weight>
@@ -327,13 +330,29 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="currentStatus">
        <property name="text">
         <string>Fetching project files...</string>
        </property>
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="startSetupButton">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>280</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #7a37a3; color: #eaf3ff; border-radius: 5px;</string>
+    </property>
+    <property name="text">
+     <string>Start Setup</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
