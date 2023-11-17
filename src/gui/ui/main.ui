@@ -7,18 +7,24 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>516</height>
+    <height>481</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PHP Launchpad v1.3.0</string>
+   <string>PHP Launchpad v2.0.0</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../../favicon.ico</normaloff>../../favicon.ico</iconset>
+   <iconset resource="../resources.qrc">
+    <normaloff>:/icons/favicon.ico</normaloff>:/icons/favicon.ico</iconset>
   </property>
   <property name="toolTipDuration">
    <number>1</number>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #0d1117; color: #bec6cd;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="installLocationInput">
@@ -30,6 +36,12 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid grey; border-radius: 5px; padding-left: 5px;</string>
+    </property>
+    <property name="text">
+     <string>C:/</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="selectLocationButton">
     <property name="geometry">
@@ -39,6 +51,15 @@
       <width>151</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #30363d; color: #eaf3ff; border: 1px solid grey; border-radius: 5px;</string>
     </property>
     <property name="text">
      <string>Browse Location</string>
@@ -59,7 +80,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">padding: 10px;</string>
+     <string notr="true">padding: 10px; border: 1px solid grey; border-radius: 5px;</string>
     </property>
     <property name="placeholderText">
      <string>Name of the project</string>
@@ -74,31 +95,34 @@
       <height>221</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QPushButton" name="selectVersionButton">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>390</y>
-      <width>141</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Select Version</string>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid grey; border-radius: 5px;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="prepareLauncherButton">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>430</y>
-      <width>141</width>
+      <x>290</x>
+      <y>390</y>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #7a37a3; color: #eaf3ff; border-radius: 5px;</string>
+    </property>
     <property name="text">
      <string>Setup Launcher</string>
+    </property>
+    <property name="icon">
+     <iconset resource="../resources.qrc">
+      <normaloff>:/icons/icons/rocket.png</normaloff>:/icons/icons/rocket.png</iconset>
     </property>
    </widget>
    <widget class="QCheckBox" name="initOnLaunchCheckBox">
@@ -110,6 +134,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #89929c;</string>
+    </property>
     <property name="text">
      <string>Initialize project quitly on installation?</string>
     </property>
@@ -119,15 +146,34 @@
      <rect>
       <x>10</x>
       <y>120</y>
-      <width>441</width>
+      <width>291</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #89929c;</string>
     </property>
     <property name="text">
      <string>Select the version you want to setup from below</string>
     </property>
     <property name="margin">
      <number>5</number>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="listUnstableCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>130</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #89929c;</string>
+    </property>
+    <property name="text">
+     <string>List unstables</string>
     </property>
    </widget>
   </widget>
@@ -143,6 +189,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

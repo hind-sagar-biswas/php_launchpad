@@ -3,13 +3,14 @@ import sys
 import shutil
 import zipfile
 import requests
+import resources
 import subprocess
 import pkg_resources
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QFileDialog, QWidget, QMainWindow, QLineEdit, QLabel, QCheckBox, QPushButton, QListWidget
+from PyQt5.QtWidgets import QApplication, QFileDialog, QWidget, QMainWindow, QLineEdit, QLabel, QCheckBox, QPushButton, QListWidget, QMessageBox
 
 class MainWindow(QMainWindow):
-    def __init__(self, App):
+    def __init__(self, App, devMode: bool):
         super(MainWindow, self).__init__()
 
         self.app = App
@@ -18,7 +19,7 @@ class MainWindow(QMainWindow):
         self.list_unstable = False
         self.repo_name = 'php_launcher'
         self.repo_owner = 'hind-sagar-biswas'
-        self.ui_file = './src/gui/ui/main-dark.ui'
+        self.ui_file = './src/gui/ui/main.ui' if devMode else 'ui/main.ui'
         
         # Load ui file
         uic.loadUi(self.ui_file, self)
@@ -102,4 +103,14 @@ class MainWindow(QMainWindow):
         destination_folder = self.installLocationInput.text()
         new_project_name = self.projectNameInput.text()
 
-        self.app.setup(destination_folder, new_project_name, selected_release, self.initialize_on_setup)
+        if (new_project_name.strip()):
+            self.app.setup(destination_folder, new_project_name, selected_release, self.initialize_on_setup)
+        else:
+            self.alert("Project Name Can't be empty!")
+
+    def alert(self, message: str):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+        msg.setText(message)
+        msg.setWindowTitle("PHP Launchpad Alert")
+        msg.exec_()

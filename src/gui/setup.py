@@ -3,18 +3,19 @@ import sys
 import shutil
 import zipfile
 import requests
+import resources
 import subprocess
 import pkg_resources
 from PyQt5 import uic
 from time import sleep
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QLabel, QPushButton, QProgressBar
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QLabel, QPushButton, QProgressBar, QMessageBox
 
 
 class SetupWindow(QMainWindow):
-    def __init__(self, destination_folder: str, project_name: str, selected_release: list, initialize_on_setup: bool):
+    def __init__(self, devMode: bool, destination_folder: str, project_name: str, selected_release: list, initialize_on_setup: bool):
         super(SetupWindow, self).__init__()
 
-        self.ui_file = './src/gui/ui/setup.ui'
+        self.ui_file = './src/gui/ui/setup.ui' if devMode else 'ui/setup.ui'
         self.destination_folder = destination_folder
         self.project_name = project_name.lower().replace(' ', '_')
         self.selected_release = selected_release
@@ -165,4 +166,14 @@ class SetupWindow(QMainWindow):
             self.titleLabel.setText('PHP Launcher Project Ready!')
 
         except Exception as e:
-            print("An error occurred:", e)
+            self.show_error(e)
+
+    def show_error(self, e):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)
+        msg.setText("OOPS! Something Went Wrong!")
+        msg.setInformativeText("Try again or create an issue on github @ https://github.com/hind-sagar-biswas/php_launchpad/")
+        msg.setWindowTitle("PHP Launchpad Setup Error")
+        msg.setDetailedText(e)
+        msg.buttonClicked.connect(lambda: exit())
+        msg.exec_()
