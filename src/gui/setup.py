@@ -27,6 +27,7 @@ class SetupWindow(QMainWindow):
         uic.loadUi(self.ui_file, self)
 
         # Define widgets
+        self.titleLabel = self.findChild(QLabel, "titleLabel")
         self.projectName = self.findChild(QLabel, "projectName")
         self.installLocation = self.findChild(QLabel, "installLocation")
         self.selectedVersion = self.findChild(QLabel, "selectedVersion")
@@ -47,9 +48,6 @@ class SetupWindow(QMainWindow):
             'True' if self.initialize_on_setup else 'False')
 
         # Hide Widgets
-        self.currentStatus.hide()
-        self.statusTitle.hide()
-        self.progressBar.hide()
         self.finishButton.hide()
         self.openFolderButton.hide()
         self.openInCodeButton.hide()
@@ -129,11 +127,8 @@ class SetupWindow(QMainWindow):
     def prepare_php_launcher(self):
         # Hide Setup Btn
         self.startSetupButton.hide()
-
-        # Show Progress Bar
-        self.currentStatus.show()
-        self.statusTitle.show()
-        self.progressBar.show()
+        
+        self.titleLabel.setText('Preparing PHP Launcher...')
 
         zip_filename = 'temp_repo.zip'
         temp_folder = 'temp_repo_extracted'
@@ -166,6 +161,8 @@ class SetupWindow(QMainWindow):
             self.finishButton.show()
             self.openFolderButton.show()
             self.openInCodeButton.show()
+
+            self.titleLabel.setText('PHP Launcher Project Ready!')
 
         except Exception as e:
             print("An error occurred:", e)

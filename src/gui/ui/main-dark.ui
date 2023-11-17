@@ -146,7 +146,7 @@
      <rect>
       <x>10</x>
       <y>120</y>
-      <width>441</width>
+      <width>291</width>
       <height>31</height>
      </rect>
     </property>
@@ -158,6 +158,22 @@
     </property>
     <property name="margin">
      <number>5</number>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="listUnstableCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>130</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: #89929c;</string>
+    </property>
+    <property name="text">
+     <string>List unstables</string>
     </property>
    </widget>
   </widget>
