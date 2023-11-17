@@ -7,15 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>486</height>
+    <height>481</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>PHP Launchpad v1.3.0</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../../favicon.ico</normaloff>../../favicon.ico</iconset>
+   <iconset resource="../../resources.qrc">
+    <normaloff>:/icons/favicon.ico</normaloff>:/icons/favicon.ico</iconset>
   </property>
   <property name="toolTipDuration">
    <number>1</number>
@@ -37,7 +37,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 1px solid grey; border-radius: 5px;</string>
+     <string notr="true">border: 1px solid grey; border-radius: 5px; padding-left: 5px;</string>
     </property>
     <property name="text">
      <string>C:/</string>
@@ -102,9 +102,9 @@
    <widget class="QPushButton" name="prepareLauncherButton">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>290</x>
       <y>390</y>
-      <width>141</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -119,6 +119,10 @@
     </property>
     <property name="text">
      <string>Setup Launcher</string>
+    </property>
+    <property name="icon">
+     <iconset resource="../../resources.qrc">
+      <normaloff>:/icons/icons/rocket.png</normaloff>:/icons/icons/rocket.png</iconset>
     </property>
    </widget>
    <widget class="QCheckBox" name="initOnLaunchCheckBox">
@@ -169,6 +173,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
