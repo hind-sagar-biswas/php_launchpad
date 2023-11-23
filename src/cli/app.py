@@ -71,8 +71,8 @@ def fetch_release_info(repo_owner: str, repo_name: str):
 
 def select_release(releases: list, select: str = 'main'):
     if select not in releases: 
-        print(f'\033[1;31;40mRequested {select} version not found!\033[1;0;40m')
-        print('Defaulting to `\033[1;33;40mmain\033[1;0;40m` branch.')
+        print(f'\033[1;31mRequested {select} version not found!\033[1;0m')
+        print('Defaulting to `\033[1;33mmain\033[1;0m` branch.')
         select = 'main'
 
         abort = input('Do you want to proceed? [Y/n]\n>>')
@@ -114,7 +114,7 @@ def fetch_and_rename_git_repo(
                 os.path.join(temp_folder, item)))
             extracted_folder = os.path.join(temp_folder, first_directory_name)
         else:
-            print("\033[1;31;40mNo directories found inside the temporary folder.\033[1;0;40m")
+            print("\033[1;31mNo directories found inside the temporary folder.\033[1;0m")
             return
 
         # Move the extracted folder to the destination folder and use the specified project name
@@ -131,7 +131,7 @@ def fetch_and_rename_git_repo(
         os.rmdir(temp_folder)
 
         installed_at = f'{destination_folder}\{new_project_name}'
-        print("PHP Launcher successfully prepared @ \033[1;33;40m", installed_at, "\033[1;0;40m")
+        print("PHP Launcher successfully prepared @ \033[1;33m", installed_at, "\033[1;0m")
 
         if init_on_setup:
             os.chdir(installed_at)
